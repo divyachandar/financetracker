@@ -3,20 +3,26 @@ import './index.css';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
+  const navigate=useNavigate();
 
-    const onFinish=values=>{
-         
-        const {username,password}=values
-        axios.post('http://localhost:3001/validatePassword',{username,password})
-        .then(res=>{if(res.data.validation){
-            alert('Your Password is correct,Thank you for your service')
-        }else{
-            alert('Your password is not correct.Please try again')
-        }
-    })
-    }
+  const onFinish = values => {
+    const { username, password } = values;
+    axios.post('http://localhost:3001/validatePassword', { username, password })
+        .then(res => {
+            if (res.data.validation) {
+                navigate('/moneymanager'); // Use navigate to redirect
+                alert('Your Password is correct. Thank you for your service');
+            } else {
+                alert('Your password is not correct. Please try again');
+            }
+        })
+        .catch(error => {
+            console.error('Error occurred while logging in:', error);
+        });
+};
 
   return (
     <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>

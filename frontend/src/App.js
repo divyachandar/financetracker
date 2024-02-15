@@ -1,14 +1,17 @@
-import './App.css';
-import Login from './component/Login';
+import React from 'react'
+import MoneyManager from './component/MoneyManager'
+import Reports from './component/Reports'
 
 
-function App(){
-
+function App() {
   return (
     <div>
-    <Login/>
+     
+     <MoneyManager/>
+     <Reports/>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
+
